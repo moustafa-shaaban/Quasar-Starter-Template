@@ -15,9 +15,48 @@
     <q-drawer v-model="settingsStore.sideBar" :side="settingsStore.language === 'en' ? 'left' : 'right'" :width="200"
       :breakpoint="700" elevated>
       <q-scroll-area class="fit">
-        <div class="q-pa-sm">
-          <div v-for="n in 4" :key="n">Drawer {{ n }} / 50</div>
-        </div>
+        <q-list padding class="menu-list">
+          <q-item exact clickable v-ripple to="/">
+            <q-item-section avatar>
+              <q-icon name="home" />
+            </q-item-section>
+
+            <q-item-section>
+              Home
+            </q-item-section>
+          </q-item>
+
+          <q-item exact clickable v-ripple to="/settings">
+            <q-item-section avatar>
+              <q-icon name="settings" />
+            </q-item-section>
+
+            <q-item-section>
+              Settings
+            </q-item-section>
+          </q-item>
+
+          <q-item exact clickable v-ripple to="/about">
+            <q-item-section avatar>
+              <q-icon name="info" />
+            </q-item-section>
+
+            <q-item-section>
+              About
+            </q-item-section>
+          </q-item>
+
+          <q-item clickable v-ripple @click="settingsStore.toggleDarkMode()">
+            <q-item-section avatar>
+              <q-icon :name="settingsStore.darkMode ? 'light_mode' : 'dark_mode'" />
+            </q-item-section>
+
+            <q-item-section>
+              Dark Mode
+            </q-item-section>
+          </q-item>
+
+        </q-list>
       </q-scroll-area>
     </q-drawer>
 

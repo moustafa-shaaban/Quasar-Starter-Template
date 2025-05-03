@@ -1,7 +1,7 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
-  failed: 'Action failed',
-  success: 'Action was successful'
+  hello: 'Hello',
+  dashboard: 'Dashboard',
+  toggle_theme: 'Toggle Theme',
+  switch_language: 'Switch Language',
+  title: 'Your Expenses',
 }

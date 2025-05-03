@@ -2,10 +2,10 @@
   <q-page padding>
     <h1>{{ $t('switch_language') }}</h1>
 
-    <q-select v-model="darkMode" :options="availableLanguages" option-value="value" option-label="label"
+    <q-select v-model="language" :options="availableLanguages" option-value="value" option-label="label"
       label="Language" @update:model-value="setLanguage($event)" emit-value map-options />
 
-    <q-toggle v-model="settingsStore.darkMode" :label="$t('toggle_theme')" />
+    <q-toggle v-model="darkMode" :label="$t('toggle_theme')" />
   </q-page>
 </template>
 
@@ -16,7 +16,7 @@ import { storeToRefs } from "pinia";
 
 const { locale } = useI18n()
 const { settingsStore, availableLanguages } = useSettings();
-const { darkMode } = storeToRefs(settingsStore)
+const { darkMode, language } = storeToRefs(settingsStore)
 
 function setLanguage(lang) {
   const newLang = settingsStore.language = lang
