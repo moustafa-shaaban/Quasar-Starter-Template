@@ -1,29 +1,26 @@
-
 <template>
-    <q-page padding>
-      <h1>{{ $t('settings.language') }}</h1>
+  <q-page padding>
+    <h1>{{ $t('switch_language') }}</h1>
 
-      <q-select
-        v-model="settingsStore.language"
-        :options="availableLanguages"
-        option-value="value"
-        option-label="label"
-        label="Language"
-        @update:model-value="settingsStore.setLanguage($event)"
-        emit-value
-        map-options
-      />
+    <q-select v-model="darkMode" :options="availableLanguages" option-value="value" option-label="label"
+      label="Language" @update:model-value="setLanguage($event)" emit-value map-options />
 
-      <q-toggle
-        v-model="settingsStore.darkMode"
-        :label="$t('settings.darkMode')"
-        @update:model-value="settingsStore.toggleDarkMode()"
-      />
-    </q-page>
-  </template>
+    <q-toggle v-model="settingsStore.darkMode" :label="$t('toggle_theme')" />
+  </q-page>
+</template>
 
-  <script setup>
-  import { useSettings } from 'src/composables/useSettings';
+<script setup>
+import { useI18n } from 'vue-i18n'
+import { useSettings } from 'src/composables/useSettings';
+import { storeToRefs } from "pinia";
 
-  const { settingsStore, availableLanguages } = useSettings();
-  </script>
+const { locale } = useI18n()
+const { settingsStore, availableLanguages } = useSettings();
+const { darkMode } = storeToRefs(settingsStore)
+
+function setLanguage(lang) {
+  const newLang = settingsStore.language = lang
+  settingsStore.setLanguage(newLang)
+  locale.value = newLang
+}
+</script>
