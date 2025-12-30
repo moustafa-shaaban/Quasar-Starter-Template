@@ -6,8 +6,7 @@
         <q-toolbar-title>{{ $t('title') }}</q-toolbar-title>
         <q-space />
         <q-btn flat round dense icon="translate" @click="switchLanguage" />
-        <q-btn flat round dense :icon="settingsStore.darkMode ? 'light_mode' : 'dark_mode'"
-          @click="settingsStore.toggleDarkMode()" />
+        <q-btn flat round dense :icon="isDark ? 'light_mode' : 'dark_mode'" @click="toggleTheme()" />
         <q-btn flat round dense icon="settings" to="/settings" />
       </q-toolbar>
     </q-header>
@@ -46,12 +45,16 @@
             </q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple @click="settingsStore.toggleDarkMode()">
+          <q-item clickable v-ripple @click="toggleTheme()">
             <q-item-section avatar>
-              <q-icon :name="settingsStore.darkMode ? 'light_mode' : 'dark_mode'" />
+              <q-icon :name="isDark ? 'light_mode' : 'dark_mode'" />
             </q-item-section>
 
-            <q-item-section>
+            <q-item-section v-if="isDark">
+              Light Mode
+            </q-item-section>
+
+            <q-item-section v-else>
               Dark Mode
             </q-item-section>
           </q-item>
@@ -67,11 +70,14 @@
 </template>
 
 <script setup>
+import { useTheme } from 'src/composables/useTheme';
 import { useSettingsStore } from 'src/stores/settings';
 import { useI18n } from 'vue-i18n';
 
 const { locale } = useI18n();
 const settingsStore = useSettingsStore();
+
+const { isDark, toggleTheme } = useTheme();
 
 function switchLanguage() {
   const newLang = settingsStore.language === 'en' ? 'ar' : 'en'

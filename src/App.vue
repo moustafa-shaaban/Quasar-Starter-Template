@@ -7,7 +7,8 @@
 </script> -->
 
 <template>
-  <q-layout :dir="settings.language === 'ar' ? 'rtl' : 'ltr'" view="lHh Lpr lFf" :class="{ 'bg-grey-10': $q.dark.isActive }">
+  <q-layout :dir="settings.language === 'ar' ? 'rtl' : 'ltr'" view="lHh Lpr lFf"
+    :class="{ 'bg-grey-10': $q.dark.isActive }">
     <router-view />
   </q-layout>
 </template>
@@ -16,13 +17,13 @@
 import { useQuasar } from 'quasar'
 import { watch } from 'vue'
 import { useSettingsStore } from 'stores/settings'
+import { useTheme } from './composables/useTheme'
 
 const $q = useQuasar()
 const settings = useSettingsStore()
+const { isDark } = useTheme()
 
-$q.dark.set(settings.darkMode)
-
-watch(() => settings.darkMode, val => {
+watch(() => isDark.value, val => {
   $q.dark.set(val)
-})
+}, { immediate: true })
 </script>

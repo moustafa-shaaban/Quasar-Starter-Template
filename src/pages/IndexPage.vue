@@ -1,6 +1,5 @@
 <template>
   <q-page class="q-pa-md">
-    <q-btn @click="settings.toggleDarkMode()" :label="$t('toggle_theme')" />
     <q-btn @click="setLanguage" :label="$t('switch_language')" class="q-ml-sm" />
   </q-page>
 </template>
