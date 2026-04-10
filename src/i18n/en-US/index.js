@@ -3,5 +3,5 @@ export default {
   dashboard: 'Dashboard',
   toggle_theme: 'Toggle Theme',
   switch_language: 'Switch Language',
-  title: 'Your Expenses',
+  title: 'Quasar Starter Template',
 }

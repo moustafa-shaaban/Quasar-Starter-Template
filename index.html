@@ -12,11 +12,11 @@
       content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>"
     />
     <style>
-      :root.body--light {
+      :root.theme--light {
         background-color: #fff !important;
         color: #000;
       }
-      :root.body--dark {
+      :root.theme--dark {
         background-color: #1d1d1d !important;
         color: #fff;
       }
@@ -29,7 +29,7 @@
 
         if (darkTheme) {
           // Apply to both for Firefox/Chrome parity
-          document.documentElement.classList.add('body--dark')
+          document.documentElement.classList.add('theme--dark')
         }
       })()
     </script>

@@ -1,14 +1,15 @@
 import { defineBoot } from '#q-app/wrappers'
 import { createI18n } from 'vue-i18n'
-import { useSettingsStore } from '../stores/settings';
 import messages from 'src/i18n'
+import { useSettingsStore } from 'src/stores/settings'
 
 export default defineBoot(({ app }) => {
-  const settingsStore = useSettingsStore();
+  const settingsStore = useSettingsStore()
   const i18n = createI18n({
     locale: settingsStore.language,
     fallbackLocale: 'en-US',
-    messages
+    globalInjection: true,
+    messages,
   })
 
   // Set i18n instance on app

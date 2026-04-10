@@ -1,19 +1,5 @@
 <template>
-  <q-page class="q-pa-md">
-    <q-btn @click="setLanguage" :label="$t('switch_language')" class="q-ml-sm" />
+  <q-page class="flex flex-center">
+    <h3>Home Page</h3>
   </q-page>
 </template>
-
-<script setup>
-import { useSettingsStore } from 'stores/settings'
-import { useI18n } from 'vue-i18n'
-
-const settings = useSettingsStore()
-const { locale } = useI18n()
-
-function setLanguage() {
-  const newLang = settings.language === 'en' ? 'ar' : 'en'
-  settings.setLanguage(newLang)
-  locale.value = newLang
-}
-</script>

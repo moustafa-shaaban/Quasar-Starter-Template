@@ -1,15 +1,3 @@
-<template>
-  <q-page padding>
-    <h5>{{ $t('switch_language') }}</h5>
-
-    <q-select v-model="language" :options="availableLanguages" option-value="value" option-label="label"
-      label="Language" @update:model-value="setLanguage($event)" emit-value map-options />
-
-    <h5>{{ $t('toggle_theme') }}</h5>
-    <theme-toggle></theme-toggle>
-  </q-page>
-</template>
-
 <script setup>
 import { useI18n } from 'vue-i18n'
 import { useSettings } from 'src/composables/useSettings';
@@ -26,3 +14,15 @@ function setLanguage(lang) {
   locale.value = newLang
 }
 </script>
+
+<template>
+  <q-page padding>
+    <h5>{{ $t('switch_language') }}</h5>
+
+    <q-select v-model="language" :options="availableLanguages" option-value="value" option-label="label"
+      label="Language" @update:model-value="setLanguage($event)" emit-value map-options />
+
+    <h5>{{ $t('toggle_theme') }}</h5>
+    <theme-toggle></theme-toggle>
+  </q-page>
+</template>

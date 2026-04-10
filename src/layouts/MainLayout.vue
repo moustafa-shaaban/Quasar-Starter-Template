@@ -1,13 +1,31 @@
+<script setup>
+import { useI18n } from 'vue-i18n'
+
+import { useTheme } from 'src/composables/useTheme';
+import { useSettingsStore } from 'src/stores/settings';
+
+const { locale } = useI18n()
+const settingsStore = useSettingsStore()
+
+const { isDark, toggleTheme } = useTheme();
+
+function switchLanguage() {
+  const newLang = settingsStore.language === 'en' ? 'ar' : 'en'
+  settingsStore.setLanguage(newLang)
+  locale.value = newLang
+}
+</script>
+
 <template>
   <q-layout view="hHh Lpr lff">
     <q-header elevated :class="settingsStore.darkMode ? 'bg-dark' : 'bg-primary'">
       <q-toolbar>
-        <q-btn flat @click="settingsStore.toggleSideBar()" round dense icon="menu" />
+        <q-btn flat @click="settingsStore.toggleSideBar()" round dense icon="menu"></q-btn>
         <q-toolbar-title>{{ $t('title') }}</q-toolbar-title>
         <q-space />
-        <q-btn flat round dense icon="translate" @click="switchLanguage" />
-        <q-btn flat round dense :icon="isDark ? 'light_mode' : 'dark_mode'" @click="toggleTheme()" />
-        <q-btn flat round dense icon="settings" to="/settings" />
+        <q-btn flat round dense icon="translate" @click="switchLanguage"></q-btn>
+        <q-btn flat round dense :icon="isDark ? 'light_mode' : 'dark_mode'" @click="toggleTheme()"></q-btn>
+        <q-btn flat round dense icon="settings" to="/settings"></q-btn>
       </q-toolbar>
     </q-header>
 
@@ -68,20 +86,3 @@
     </q-page-container>
   </q-layout>
 </template>
-
-<script setup>
-import { useTheme } from 'src/composables/useTheme';
-import { useSettingsStore } from 'src/stores/settings';
-import { useI18n } from 'vue-i18n';
-
-const { locale } = useI18n();
-const settingsStore = useSettingsStore();
-
-const { isDark, toggleTheme } = useTheme();
-
-function switchLanguage() {
-  const newLang = settingsStore.language === 'en' ? 'ar' : 'en'
-  settingsStore.setLanguage(newLang)
-  locale.value = newLang
-}
-</script>
