@@ -14,23 +14,21 @@
     <style>
       :root.theme--light {
         background-color: #fff !important;
-        color: #000;
+        color: #121212;
       }
       :root.theme--dark {
-        background-color: #1d1d1d !important;
+        background-color: #121212 !important;
         color: #fff;
       }
     </style>
     <script>
       ;(function () {
         const savedTheme = localStorage.getItem('vueuse-color-scheme') || 'auto'
-        const userPreferDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-        const darkTheme = savedTheme === 'dark' || (savedTheme === 'auto' && userPreferDark)
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        const isDark = savedTheme === 'dark' || (savedTheme === 'auto' && prefersDark)
 
-        if (darkTheme) {
-          // Apply to both for Firefox/Chrome parity
-          document.documentElement.classList.add('theme--dark')
-        }
+        // Always apply a class immediately — prevents any flash in either mode
+        document.documentElement.classList.add(isDark ? 'theme--dark' : 'theme--light')
       })()
     </script>
     <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128x128.png" />

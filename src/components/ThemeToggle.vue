@@ -1,9 +1,9 @@
 <script setup>
 import { useTheme } from 'src/composables/useTheme';
-
-const { isDark } = useTheme();
+const { isDark, toggleTheme } = useTheme();
 </script>
 
 <template>
-  <q-toggle v-model="isDark" dense color="amber" unchecked-icon="light_mode" checked-icon="dark_mode" />
+    <q-btn flat dense :label="isDark ? 'Light' : 'Dark'" :icon="isDark ? 'light_mode' : 'dark_mode'"
+        @click="toggleTheme()"></q-btn>
 </template>

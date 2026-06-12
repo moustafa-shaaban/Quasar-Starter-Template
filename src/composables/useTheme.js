@@ -7,6 +7,8 @@ export function useTheme() {
     valueDark: 'theme--dark',
     valueLight: 'theme--light',
   })
+
   const toggleTheme = useToggle(isDark)
+
   return { isDark, toggleTheme }
 }
