@@ -1,8 +1,8 @@
 <script setup>
 import { useQuasar } from 'quasar';
-import ThemeToggle from 'src/components/ThemeToggle.vue'
-import { useTheme } from 'src/composables/useTheme';
-import { useSettingsStore } from 'src/stores/settings'
+import ThemeToggle from '@/components/ThemeToggle.vue'
+import { useTheme } from '@/composables/useTheme';
+import { useSettingsStore } from '@/stores/settings'
 import { ref } from 'vue';
 
 const settingsStore = useSettingsStore();
